@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clock – StudyHub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/clock.css">
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="images/logo.png" alt="StudyHub">
+    <span class="sidebar-title">StudyHub</span>
+    <button class="sidebar-close" id="sidebarClose">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="sidebar-link"><span class="link-icon">🏠</span> Home</a>
+    <a href="calculator.html" class="sidebar-link"><span class="link-icon">🔢</span> Calculator</a>
+    <a href="todo.html" class="sidebar-link"><span class="link-icon">✅</span> To-Do</a>
+    <a href="notes.html" class="sidebar-link"><span class="link-icon">📝</span> Notes</a>
+    <a href="stopwatch.html" class="sidebar-link"><span class="link-icon">⏱️</span> Stopwatch</a>
+    <a href="clock.html" class="sidebar-link active"><span class="link-icon">🕐</span> Clock</a>
+    <a href="bmi.html" class="sidebar-link"><span class="link-icon">⚖️</span> BMI Calculator</a>
+    <a href="converter.html" class="sidebar-link"><span class="link-icon">🔄</span> Converter</a>
+    <a href="calendar.html" class="sidebar-link"><span class="link-icon">📅</span> Calendar</a>
+    <a href="game.html" class="sidebar-link"><span class="link-icon">🎯</span> Guess Game</a>
+    <a href="about.html" class="sidebar-link"><span class="link-icon">ℹ️</span> About</a>
+    <a href="help.html" class="sidebar-link"><span class="link-icon">❓</span> Help</a>
+  </nav>
+  <div class="sidebar-footer">StudyHub &copy; 2025</div>
+</aside>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-brand">
+      <img src="images/logo.png" alt="StudyHub" class="nav-logo">
+      <span class="brand-text">StudyHub</span>
+    </a>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="page-header">
+    <h1>🕐 World Clock</h1>
+    <p>Digital clock with world time zones</p>
+  </div>
+
+  <div class="main-clock card">
+    <div class="analog-clock" id="analogClock">
+      <div class="hand hour-hand" id="hourHand"></div>
+      <div class="hand min-hand"  id="minHand"></div>
+      <div class="hand sec-hand"  id="secHand"></div>
+      <div class="clock-center"></div>
+      <div class="clock-marks"></div>
+    </div>
+    <div class="digital-side">
+      <div class="digital-time" id="mainTime">--:--:--</div>
+      <div class="digital-date" id="mainDate">Loading…</div>
+      <div class="digital-tz" id="mainTz"></div>
+      <div class="ampm-toggle">
+        <button class="ctab" id="btn12" onclick="setFmt(12,this)">12H</button>
+        <button class="ctab active" id="btn24" onclick="setFmt(24,this)">24H</button>
+      </div>
+    </div>
+  </div>
+
+  <h2 style="font-size:1rem;font-weight:700;margin:24px 0 12px">🌍 World Clocks</h2>
+  <div class="world-grid" id="worldGrid"></div>
+</main>
+
+<footer><p>Made with <span>♥</span> by StudyHub &copy; 2025</p></footer>
+<div class="toast-container" id="toastContainer"></div>
+<script>
+  (function() {
+    var sb = document.getElementById('sidebar');
+    var ov = document.getElementById('overlay');
+    var hb = document.getElementById('hamburger');
+    var sc = document.getElementById('sidebarClose');
+    function openSB()  { sb.classList.add('open'); ov.classList.add('open'); }
+    function closeSB() { sb.classList.remove('open'); ov.classList.remove('open'); }
+    hb.addEventListener('click', function() { sb.classList.contains('open') ? closeSB() : openSB(); });
+    sc.addEventListener('click', closeSB);
+    ov.addEventListener('click', closeSB);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSB(); });
+  })();
+  function toast(msg, type) {
+    var t = document.createElement('div');
+    t.className = 'toast' + (type ? ' ' + type : '');
+    t.textContent = msg;
+    document.getElementById('toastContainer').appendChild(t);
+    setTimeout(function() { t.remove(); }, 3000);
+  }
+</script>
+<script src="js/clock.js"></script>
+</body>
+</html>

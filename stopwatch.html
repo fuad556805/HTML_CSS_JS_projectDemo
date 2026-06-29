@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stopwatch – StudyHub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/stopwatch.css">
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="images/logo.png" alt="StudyHub">
+    <span class="sidebar-title">StudyHub</span>
+    <button class="sidebar-close" id="sidebarClose">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="sidebar-link"><span class="link-icon">🏠</span> Home</a>
+    <a href="calculator.html" class="sidebar-link"><span class="link-icon">🔢</span> Calculator</a>
+    <a href="todo.html" class="sidebar-link"><span class="link-icon">✅</span> To-Do</a>
+    <a href="notes.html" class="sidebar-link"><span class="link-icon">📝</span> Notes</a>
+    <a href="stopwatch.html" class="sidebar-link active"><span class="link-icon">⏱️</span> Stopwatch</a>
+    <a href="clock.html" class="sidebar-link"><span class="link-icon">🕐</span> Clock</a>
+    <a href="bmi.html" class="sidebar-link"><span class="link-icon">⚖️</span> BMI Calculator</a>
+    <a href="converter.html" class="sidebar-link"><span class="link-icon">🔄</span> Converter</a>
+    <a href="calendar.html" class="sidebar-link"><span class="link-icon">📅</span> Calendar</a>
+    <a href="game.html" class="sidebar-link"><span class="link-icon">🎯</span> Guess Game</a>
+    <a href="about.html" class="sidebar-link"><span class="link-icon">ℹ️</span> About</a>
+    <a href="help.html" class="sidebar-link"><span class="link-icon">❓</span> Help</a>
+  </nav>
+  <div class="sidebar-footer">StudyHub &copy; 2025</div>
+</aside>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-brand">
+      <img src="images/logo.png" alt="StudyHub" class="nav-logo">
+      <span class="brand-text">StudyHub</span>
+    </a>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="page-header">
+    <h1>⏱️ Stopwatch &amp; Timer</h1>
+    <p>Track time with lap support</p>
+  </div>
+
+  <div class="sw-layout">
+    <div class="card sw-card">
+      <div class="sw-tabs">
+        <button class="sw-tab active" onclick="switchMode('sw',this)">Stopwatch</button>
+        <button class="sw-tab" onclick="switchMode('cd',this)">Countdown</button>
+      </div>
+
+      <div id="swMode">
+        <div class="sw-display">
+          <div class="sw-time" id="swDisplay">00:00:00.00</div>
+          <div class="sw-label" id="swLabel">Ready</div>
+        </div>
+        <div class="sw-circle">
+          <svg viewBox="0 0 120 120" class="sw-svg">
+            <circle cx="60" cy="60" r="54" class="sw-bg-ring"/>
+            <circle cx="60" cy="60" r="54" class="sw-ring" id="swRing"/>
+          </svg>
+        </div>
+        <div class="sw-controls">
+          <button class="btn btn-lg sw-btn-start" id="swStart" onclick="toggleSW()">▶ Start</button>
+          <button class="btn btn-lg btn-outline" onclick="lapSW()">🏁 Lap</button>
+          <button class="btn btn-lg btn-danger" onclick="resetSW()">↺ Reset</button>
+        </div>
+      </div>
+
+      <div id="cdMode" style="display:none">
+        <div class="sw-display">
+          <div class="sw-time" id="cdDisplay">00:00:00</div>
+          <div class="sw-label" id="cdLabel">Set time below</div>
+        </div>
+        <div class="cd-inputs">
+          <div class="cd-inp-group">
+            <input type="number" class="input cd-inp" id="cdHr" placeholder="HH" min="0" max="99" value="0">
+            <span>h</span>
+          </div>
+          <div class="cd-inp-group">
+            <input type="number" class="input cd-inp" id="cdMin" placeholder="MM" min="0" max="59" value="5">
+            <span>m</span>
+          </div>
+          <div class="cd-inp-group">
+            <input type="number" class="input cd-inp" id="cdSec" placeholder="SS" min="0" max="59" value="0">
+            <span>s</span>
+          </div>
+        </div>
+        <div class="sw-controls">
+          <button class="btn btn-lg sw-btn-start" id="cdStart" onclick="toggleCD()">▶ Start</button>
+          <button class="btn btn-lg btn-danger" onclick="resetCD()">↺ Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card laps-card">
+      <div class="flex justify-between items-center mb-2">
+        <h3 style="font-size:1rem;font-weight:700">🏁 Lap Times</h3>
+        <button class="btn btn-sm btn-outline" onclick="clearLaps()">Clear</button>
+      </div>
+      <div class="laps-list" id="lapsList">
+        <p style="color:var(--text-light);text-align:center;padding:20px">No laps recorded.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer><p>Made with <span>♥</span> by StudyHub &copy; 2025</p></footer>
+<div class="toast-container" id="toastContainer"></div>
+<script>
+  (function() {
+    var sb = document.getElementById('sidebar');
+    var ov = document.getElementById('overlay');
+    var hb = document.getElementById('hamburger');
+    var sc = document.getElementById('sidebarClose');
+    function openSB()  { sb.classList.add('open'); ov.classList.add('open'); }
+    function closeSB() { sb.classList.remove('open'); ov.classList.remove('open'); }
+    hb.addEventListener('click', function() { sb.classList.contains('open') ? closeSB() : openSB(); });
+    sc.addEventListener('click', closeSB);
+    ov.addEventListener('click', closeSB);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSB(); });
+  })();
+  function toast(msg, type) {
+    var t = document.createElement('div');
+    t.className = 'toast' + (type ? ' ' + type : '');
+    t.textContent = msg;
+    document.getElementById('toastContainer').appendChild(t);
+    setTimeout(function() { t.remove(); }, 3000);
+  }
+</script>
+<script src="js/stopwatch.js"></script>
+</body>
+</html>

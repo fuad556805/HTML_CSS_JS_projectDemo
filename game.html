@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guess Game – StudyHub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="images/logo.png" alt="StudyHub">
+    <span class="sidebar-title">StudyHub</span>
+    <button class="sidebar-close" id="sidebarClose">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="sidebar-link"><span class="link-icon">🏠</span> Home</a>
+    <a href="calculator.html" class="sidebar-link"><span class="link-icon">🔢</span> Calculator</a>
+    <a href="todo.html" class="sidebar-link"><span class="link-icon">✅</span> To-Do</a>
+    <a href="notes.html" class="sidebar-link"><span class="link-icon">📝</span> Notes</a>
+    <a href="stopwatch.html" class="sidebar-link"><span class="link-icon">⏱️</span> Stopwatch</a>
+    <a href="clock.html" class="sidebar-link"><span class="link-icon">🕐</span> Clock</a>
+    <a href="bmi.html" class="sidebar-link"><span class="link-icon">⚖️</span> BMI Calculator</a>
+    <a href="converter.html" class="sidebar-link"><span class="link-icon">🔄</span> Converter</a>
+    <a href="calendar.html" class="sidebar-link"><span class="link-icon">📅</span> Calendar</a>
+    <a href="game.html" class="sidebar-link active"><span class="link-icon">🎯</span> Guess Game</a>
+    <a href="about.html" class="sidebar-link"><span class="link-icon">ℹ️</span> About</a>
+    <a href="help.html" class="sidebar-link"><span class="link-icon">❓</span> Help</a>
+  </nav>
+  <div class="sidebar-footer">StudyHub &copy; 2025</div>
+</aside>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-brand">
+      <img src="images/logo.png" alt="StudyHub" class="nav-logo">
+      <span class="brand-text">StudyHub</span>
+    </a>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="page-header">
+    <h1>🎯 Guess the Number</h1>
+    <p>Think of a number — can you guess the secret one?</p>
+  </div>
+
+  <div class="game-wrap">
+    <div class="game-card card">
+      <div class="settings-row">
+        <div class="setting-group">
+          <label>Range</label>
+          <div class="btn-group">
+            <button class="range-btn active" data-range="50" onclick="setRange(50, this)">1 – 50</button>
+            <button class="range-btn" data-range="100" onclick="setRange(100, this)">1 – 100</button>
+            <button class="range-btn" data-range="200" onclick="setRange(200, this)">1 – 200</button>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="startGame()">🔄 New Game</button>
+      </div>
+    </div>
+
+    <div class="game-card card">
+      <div class="target-info" id="targetInfo">
+        Guess a number between <strong>1</strong> and <strong id="rangeMax">50</strong>
+      </div>
+      <div class="guess-row">
+        <input type="number" class="input guess-input" id="guessInput" placeholder="Enter your guess…" min="1" max="50">
+        <button class="btn btn-primary" onclick="submitGuess()">Guess!</button>
+      </div>
+      <div class="feedback-box" id="feedbackBox">
+        <span class="feedback-icon" id="feedbackIcon">🎯</span>
+        <span class="feedback-msg" id="feedbackMsg">Make your first guess!</span>
+      </div>
+      <div class="attempts-bar">
+        <span>Attempts: <strong id="attemptsCount">0</strong></span>
+        <span class="hint-range" id="hintRange"></span>
+      </div>
+      <div class="history-chips" id="historyChips"></div>
+    </div>
+
+    <div class="game-card card score-card">
+      <h3>📊 Your Stats</h3>
+      <div class="score-row">
+        <div class="score-item">
+          <div class="score-num" id="scoreWins">0</div>
+          <div class="score-lbl">Wins</div>
+        </div>
+        <div class="score-item">
+          <div class="score-num" id="scoreLosses">0</div>
+          <div class="score-lbl">Losses</div>
+        </div>
+        <div class="score-item">
+          <div class="score-num" id="scoreBest">–</div>
+          <div class="score-lbl">Best</div>
+        </div>
+      </div>
+      <button class="btn btn-outline btn-sm mt-2" onclick="clearScore()" style="width:100%">Reset Score</button>
+    </div>
+  </div>
+</main>
+
+<footer><p>Made with <span>♥</span> by StudyHub &copy; 2025</p></footer>
+<div class="toast-container" id="toastContainer"></div>
+<script>
+  (function() {
+    var sb = document.getElementById('sidebar');
+    var ov = document.getElementById('overlay');
+    var hb = document.getElementById('hamburger');
+    var sc = document.getElementById('sidebarClose');
+    function openSB()  { sb.classList.add('open'); ov.classList.add('open'); }
+    function closeSB() { sb.classList.remove('open'); ov.classList.remove('open'); }
+    hb.addEventListener('click', function() { sb.classList.contains('open') ? closeSB() : openSB(); });
+    sc.addEventListener('click', closeSB);
+    ov.addEventListener('click', closeSB);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSB(); });
+  })();
+  function toast(msg, type) {
+    var t = document.createElement('div');
+    t.className = 'toast' + (type ? ' ' + type : '');
+    t.textContent = msg;
+    document.getElementById('toastContainer').appendChild(t);
+    setTimeout(function() { t.remove(); }, 3000);
+  }
+</script>
+<script src="js/game.js"></script>
+</body>
+</html>

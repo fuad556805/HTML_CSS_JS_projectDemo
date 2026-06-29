@@ -1,0 +1,175 @@
+.main-clock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  padding: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.analog-clock {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  position: relative;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  box-shadow:
+    0 8px 32px rgba(67, 97, 238, 0.3),
+    inset 0 2px 4px rgba(255, 255, 255, 0.05);
+  flex-shrink: 0;
+}
+
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  border-radius: 4px;
+}
+
+.hour-hand {
+  width: 5px;
+  height: 55px;
+  background: #fff;
+  margin-left: -2.5px;
+}
+.min-hand {
+  width: 3px;
+  height: 72px;
+  background: #4361ee;
+  margin-left: -1.5px;
+}
+.sec-hand {
+  width: 2px;
+  height: 80px;
+  background: #f72585;
+  margin-left: -1px;
+}
+
+.clock-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  background: #f72585;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  box-shadow: 0 0 8px rgba(247, 37, 133, 0.5);
+}
+
+.clock-marks {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    #4361ee 0deg,
+    #4361ee 2deg,
+    transparent 2deg,
+    transparent 30deg
+  );
+  opacity: 0.15;
+}
+
+.digital-side {
+  text-align: center;
+}
+.digital-time {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 3px;
+  line-height: 1;
+}
+.digital-date {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin: 8px 0 4px;
+}
+.digital-tz {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-bottom: 16px;
+}
+
+.ampm-toggle {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+.ctab {
+  padding: 6px 16px;
+  border: 2px solid var(--border);
+  background: transparent;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-light);
+  transition: var(--transition);
+}
+.ctab.active {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.world-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.world-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  border-top: 4px solid var(--primary);
+}
+.world-city {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.world-time {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary);
+  font-variant-numeric: tabular-nums;
+}
+.world-date {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+.world-tz {
+  font-size: 0.75rem;
+  color: var(--text-light);
+}
+
+@media (max-width: 600px) {
+  .main-clock {
+    gap: 24px;
+    padding: 24px;
+  }
+  .analog-clock {
+    width: 150px;
+    height: 150px;
+  }
+  .hour-hand {
+    height: 40px;
+  }
+  .min-hand {
+    height: 54px;
+  }
+  .sec-hand {
+    height: 60px;
+  }
+  .digital-time {
+    font-size: 2rem;
+  }
+}

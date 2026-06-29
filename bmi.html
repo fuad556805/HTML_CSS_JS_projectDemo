@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator – StudyHub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/bmi.css">
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="images/logo.png" alt="StudyHub">
+    <span class="sidebar-title">StudyHub</span>
+    <button class="sidebar-close" id="sidebarClose">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="sidebar-link"><span class="link-icon">🏠</span> Home</a>
+    <a href="calculator.html" class="sidebar-link"><span class="link-icon">🔢</span> Calculator</a>
+    <a href="todo.html" class="sidebar-link"><span class="link-icon">✅</span> To-Do</a>
+    <a href="notes.html" class="sidebar-link"><span class="link-icon">📝</span> Notes</a>
+    <a href="stopwatch.html" class="sidebar-link"><span class="link-icon">⏱️</span> Stopwatch</a>
+    <a href="clock.html" class="sidebar-link"><span class="link-icon">🕐</span> Clock</a>
+    <a href="bmi.html" class="sidebar-link active"><span class="link-icon">⚖️</span> BMI Calculator</a>
+    <a href="converter.html" class="sidebar-link"><span class="link-icon">🔄</span> Converter</a>
+    <a href="calendar.html" class="sidebar-link"><span class="link-icon">📅</span> Calendar</a>
+    <a href="game.html" class="sidebar-link"><span class="link-icon">🎯</span> Guess Game</a>
+    <a href="about.html" class="sidebar-link"><span class="link-icon">ℹ️</span> About</a>
+    <a href="help.html" class="sidebar-link"><span class="link-icon">❓</span> Help</a>
+  </nav>
+  <div class="sidebar-footer">StudyHub &copy; 2025</div>
+</aside>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-brand">
+      <img src="images/logo.png" alt="StudyHub" class="nav-logo">
+      <span class="brand-text">StudyHub</span>
+    </a>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="page-header">
+    <h1>⚖️ BMI Calculator</h1>
+    <p>Calculate your Body Mass Index and get health insights</p>
+  </div>
+
+  <div class="bmi-layout">
+    <div class="card bmi-input-card">
+      <div class="unit-toggle">
+        <button class="utab active" id="tabMetric" onclick="setUnit('metric',this)">Metric (kg/cm)</button>
+        <button class="utab" id="tabImperial" onclick="setUnit('imperial',this)">Imperial (lb/ft)</button>
+      </div>
+
+      <div id="metricInputs">
+        <div class="input-group">
+          <label>Height (cm)</label>
+          <input type="number" class="input" id="heightCm" placeholder="e.g. 170" min="50" max="300">
+        </div>
+        <div class="input-group">
+          <label>Weight (kg)</label>
+          <input type="number" class="input" id="weightKg" placeholder="e.g. 65" min="10" max="500">
+        </div>
+      </div>
+
+      <div id="imperialInputs" style="display:none">
+        <div class="input-group">
+          <label>Height</label>
+          <div style="display:flex;gap:8px">
+            <input type="number" class="input" id="heightFt" placeholder="ft" min="1" max="9">
+            <input type="number" class="input" id="heightIn" placeholder="in" min="0" max="11">
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Weight (lbs)</label>
+          <input type="number" class="input" id="weightLb" placeholder="e.g. 145" min="20" max="1000">
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>Age</label>
+        <input type="number" class="input" id="ageInput" placeholder="e.g. 20" min="1" max="120">
+      </div>
+      <div class="input-group">
+        <label>Gender</label>
+        <select class="input" id="genderInput">
+          <option value="">Prefer not to say</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <button class="btn btn-primary btn-lg w-full mt-2" onclick="calcBMI()">Calculate BMI</button>
+    </div>
+
+    <div class="card bmi-result-card" id="bmiResult" style="display:none">
+      <div class="bmi-value-section">
+        <div class="bmi-num" id="bmiNum">--</div>
+        <div class="bmi-cat" id="bmiCat">--</div>
+        <div class="bmi-emoji" id="bmiEmoji">🤔</div>
+      </div>
+      <div class="bmi-gauge-wrap">
+        <div class="bmi-gauge">
+          <div class="gauge-fill" id="gaugeFill"></div>
+          <div class="gauge-needle" id="gaugeNeedle"></div>
+          <div class="gauge-labels">
+            <span>Underweight</span><span>Normal</span><span>Overweight</span><span>Obese</span>
+          </div>
+        </div>
+      </div>
+      <div class="bmi-info-grid" id="bmiInfoGrid"></div>
+      <div class="health-tips" id="healthTips"></div>
+    </div>
+  </div>
+
+  <div class="card mt-3">
+    <h3 style="margin-bottom:14px;font-weight:700">📊 BMI Classification</h3>
+    <div class="bmi-table-wrap">
+      <table class="bmi-table">
+        <thead><tr><th>Category</th><th>BMI Range</th><th>Health Risk</th></tr></thead>
+        <tbody>
+          <tr class="row-underweight"><td>Underweight</td><td>&lt; 18.5</td><td>Moderate risk</td></tr>
+          <tr class="row-normal"><td>Normal Weight</td><td>18.5 – 24.9</td><td>Low risk</td></tr>
+          <tr class="row-overweight"><td>Overweight</td><td>25 – 29.9</td><td>Increased risk</td></tr>
+          <tr class="row-obese1"><td>Obese Class I</td><td>30 – 34.9</td><td>High risk</td></tr>
+          <tr class="row-obese2"><td>Obese Class II</td><td>35 – 39.9</td><td>Very high risk</td></tr>
+          <tr class="row-obese3"><td>Obese Class III</td><td>&ge; 40</td><td>Extremely high risk</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<footer><p>Made with <span>♥</span> by StudyHub &copy; 2025</p></footer>
+<div class="toast-container" id="toastContainer"></div>
+<script>
+  (function() {
+    var sb = document.getElementById('sidebar');
+    var ov = document.getElementById('overlay');
+    var hb = document.getElementById('hamburger');
+    var sc = document.getElementById('sidebarClose');
+    function openSB()  { sb.classList.add('open'); ov.classList.add('open'); }
+    function closeSB() { sb.classList.remove('open'); ov.classList.remove('open'); }
+    hb.addEventListener('click', function() { sb.classList.contains('open') ? closeSB() : openSB(); });
+    sc.addEventListener('click', closeSB);
+    ov.addEventListener('click', closeSB);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSB(); });
+  })();
+  function toast(msg, type) {
+    var t = document.createElement('div');
+    t.className = 'toast' + (type ? ' ' + type : '');
+    t.textContent = msg;
+    document.getElementById('toastContainer').appendChild(t);
+    setTimeout(function() { t.remove(); }, 3000);
+  }
+</script>
+<script src="js/bmi.js"></script>
+</body>
+</html>

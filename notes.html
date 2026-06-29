@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes – StudyHub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/notes.css">
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="images/logo.png" alt="StudyHub">
+    <span class="sidebar-title">StudyHub</span>
+    <button class="sidebar-close" id="sidebarClose">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="sidebar-link"><span class="link-icon">🏠</span> Home</a>
+    <a href="calculator.html" class="sidebar-link"><span class="link-icon">🔢</span> Calculator</a>
+    <a href="todo.html" class="sidebar-link"><span class="link-icon">✅</span> To-Do</a>
+    <a href="notes.html" class="sidebar-link active"><span class="link-icon">📝</span> Notes</a>
+    <a href="stopwatch.html" class="sidebar-link"><span class="link-icon">⏱️</span> Stopwatch</a>
+    <a href="clock.html" class="sidebar-link"><span class="link-icon">🕐</span> Clock</a>
+    <a href="bmi.html" class="sidebar-link"><span class="link-icon">⚖️</span> BMI Calculator</a>
+    <a href="converter.html" class="sidebar-link"><span class="link-icon">🔄</span> Converter</a>
+    <a href="calendar.html" class="sidebar-link"><span class="link-icon">📅</span> Calendar</a>
+    <a href="game.html" class="sidebar-link"><span class="link-icon">🎯</span> Guess Game</a>
+    <a href="about.html" class="sidebar-link"><span class="link-icon">ℹ️</span> About</a>
+    <a href="help.html" class="sidebar-link"><span class="link-icon">❓</span> Help</a>
+  </nav>
+  <div class="sidebar-footer">StudyHub &copy; 2025</div>
+</aside>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-brand">
+      <img src="images/logo.png" alt="StudyHub" class="nav-logo">
+      <span class="brand-text">StudyHub</span>
+    </a>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="page-header">
+    <h1>📝 Notes</h1>
+    <p>Write, save and organize your notes</p>
+  </div>
+
+  <div class="notes-layout">
+    <div class="notes-sidebar card">
+      <div class="sidebar-head">
+        <h3>My Notes <span id="noteCount" class="cnt-badge">0</span></h3>
+        <button class="btn btn-primary btn-sm" onclick="newNote()">+ New</button>
+      </div>
+      <input type="text" class="input" id="searchInput" placeholder="🔍 Search notes…" oninput="renderList()" style="margin:10px 0">
+      <div class="note-list" id="noteList"></div>
+    </div>
+    <div class="notes-editor card">
+      <div id="editorPlaceholder" class="editor-placeholder">
+        <div style="font-size:3rem">📝</div>
+        <p>Select a note or create a new one</p>
+        <button class="btn btn-primary mt-2" onclick="newNote()">+ Create Note</button>
+      </div>
+      <div id="editorArea" style="display:none;height:100%;display:none;flex-direction:column">
+        <div class="editor-toolbar">
+          <input type="text" class="input note-title-input" id="noteTitleInput" placeholder="Note title…" maxlength="80">
+          <div class="toolbar-actions">
+            <button class="btn btn-success btn-sm" onclick="saveNote()">💾 Save</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteNote()">🗑️</button>
+          </div>
+        </div>
+        <div class="fmt-bar">
+          <button onclick="fmt('bold')" title="Bold"><b>B</b></button>
+          <button onclick="fmt('italic')" title="Italic"><i>I</i></button>
+          <button onclick="fmt('underline')" title="Underline"><u>U</u></button>
+          <button onclick="fmtList('ul')" title="Bullet list">≡</button>
+          <button onclick="fmtList('ol')" title="Numbered list">1.</button>
+          <button onclick="fmt('removeFormat')" title="Clear format">✕</button>
+          <span class="word-count" id="wordCount">0 words</span>
+        </div>
+        <div class="note-editor" id="noteEditor" contenteditable="true" spellcheck="true" placeholder="Start writing…"></div>
+        <div class="editor-footer">
+          <span id="noteMeta" class="note-meta"></span>
+          <button class="btn btn-outline btn-sm" onclick="downloadNote()">⬇️ Download</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer><p>Made with <span>♥</span> by StudyHub &copy; 2025</p></footer>
+<div class="toast-container" id="toastContainer"></div>
+<script>
+  (function() {
+    var sb = document.getElementById('sidebar');
+    var ov = document.getElementById('overlay');
+    var hb = document.getElementById('hamburger');
+    var sc = document.getElementById('sidebarClose');
+    function openSB()  { sb.classList.add('open'); ov.classList.add('open'); }
+    function closeSB() { sb.classList.remove('open'); ov.classList.remove('open'); }
+    hb.addEventListener('click', function() { sb.classList.contains('open') ? closeSB() : openSB(); });
+    sc.addEventListener('click', closeSB);
+    ov.addEventListener('click', closeSB);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSB(); });
+  })();
+  function toast(msg, type) {
+    var t = document.createElement('div');
+    t.className = 'toast' + (type ? ' ' + type : '');
+    t.textContent = msg;
+    document.getElementById('toastContainer').appendChild(t);
+    setTimeout(function() { t.remove(); }, 3000);
+  }
+</script>
+<script src="js/notes.js"></script>
+</body>
+</html>

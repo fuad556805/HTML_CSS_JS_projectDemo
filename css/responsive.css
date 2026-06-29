@@ -1,0 +1,112 @@
+/* Extra responsive breakpoints for all pages */
+
+@media (max-width: 1100px) {
+  .calc-layout {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+  }
+  .bmi-layout {
+    grid-template-columns: 1fr;
+  }
+  .game-layout {
+    grid-template-columns: 1fr;
+  }
+  .sw-layout {
+    grid-template-columns: 1fr;
+  }
+  .cal-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 20px 14px;
+  }
+  .page-header h1 {
+    font-size: 1.5rem;
+  }
+  .card {
+    padding: 18px 14px;
+  }
+
+  .notes-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .notes-sidebar {
+    max-height: 240px;
+  }
+  .note-editor {
+    min-height: 240px;
+  }
+
+  .about-hero {
+    flex-direction: column;
+    gap: 20px;
+    padding: 24px;
+  }
+  .about-logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .world-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stats-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 0 14px;
+  }
+  .brand-text {
+    font-size: 1.1rem;
+  }
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .feature-card {
+    padding: 14px 8px;
+  }
+  .board {
+    max-width: 280px;
+  }
+  .cell {
+    font-size: 1.8rem;
+  }
+  .world-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .sci-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .calc-pad button {
+    padding: 13px 4px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .navbar,
+  footer,
+  .toast-container,
+  .btn {
+    display: none !important;
+  }
+  .main {
+    padding: 0;
+  }
+  .card {
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+}

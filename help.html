@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help – StudyHub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/help.css">
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="images/logo.png" alt="StudyHub">
+    <span class="sidebar-title">StudyHub</span>
+    <button class="sidebar-close" id="sidebarClose">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="sidebar-link"><span class="link-icon">🏠</span> Home</a>
+    <a href="calculator.html" class="sidebar-link"><span class="link-icon">🔢</span> Calculator</a>
+    <a href="todo.html" class="sidebar-link"><span class="link-icon">✅</span> To-Do</a>
+    <a href="notes.html" class="sidebar-link"><span class="link-icon">📝</span> Notes</a>
+    <a href="stopwatch.html" class="sidebar-link"><span class="link-icon">⏱️</span> Stopwatch</a>
+    <a href="clock.html" class="sidebar-link"><span class="link-icon">🕐</span> Clock</a>
+    <a href="bmi.html" class="sidebar-link"><span class="link-icon">⚖️</span> BMI Calculator</a>
+    <a href="converter.html" class="sidebar-link"><span class="link-icon">🔄</span> Converter</a>
+    <a href="calendar.html" class="sidebar-link"><span class="link-icon">📅</span> Calendar</a>
+    <a href="game.html" class="sidebar-link"><span class="link-icon">🎯</span> Guess Game</a>
+    <a href="about.html" class="sidebar-link"><span class="link-icon">ℹ️</span> About</a>
+    <a href="help.html" class="sidebar-link active"><span class="link-icon">❓</span> Help</a>
+  </nav>
+  <div class="sidebar-footer">StudyHub &copy; 2025</div>
+</aside>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-brand">
+      <img src="images/logo.png" alt="StudyHub" class="nav-logo">
+      <span class="brand-text">StudyHub</span>
+    </a>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="page-header">
+    <h1>❓ Help &amp; FAQ</h1>
+    <p>Everything you need to know about using StudyHub</p>
+  </div>
+
+  <div class="quick-links card">
+    <h3 style="margin-bottom:14px;font-weight:700">Jump to a section:</h3>
+    <div class="ql-grid">
+      <a href="#getting-started" class="ql-btn">🚀 Getting Started</a>
+      <a href="#calculator" class="ql-btn">🔢 Calculator</a>
+      <a href="#todo" class="ql-btn">✅ To-Do</a>
+      <a href="#notes" class="ql-btn">📝 Notes</a>
+      <a href="#stopwatch" class="ql-btn">⏱️ Stopwatch</a>
+      <a href="#bmi" class="ql-btn">⚖️ BMI</a>
+      <a href="#converter" class="ql-btn">🔄 Converter</a>
+      <a href="#calendar" class="ql-btn">📅 Calendar</a>
+      <a href="#game" class="ql-btn">🎯 Game</a>
+      <a href="#faq" class="ql-btn">💬 FAQ</a>
+    </div>
+  </div>
+
+  <div class="help-section card" id="getting-started">
+    <h2>🚀 Getting Started</h2>
+    <p>When you first open StudyHub, you'll be asked to enter your name. This personalizes your dashboard with a greeting. You can always change it by clicking <strong>"✏️ Edit Name"</strong> on the home page.</p>
+    <div class="tip-box">💡 <strong>Tip:</strong> All your data (tasks, notes, events) is saved automatically in your browser. Clearing browser data will erase it.</div>
+    <ul class="help-list">
+      <li>Click the <strong>☰ hamburger icon</strong> (top-left) to open the sidebar menu</li>
+      <li>Click anywhere outside the sidebar or press <kbd>Esc</kbd> to close it</li>
+      <li>The <strong>Home dashboard</strong> shows quick stats for all your tools</li>
+    </ul>
+  </div>
+
+  <div class="help-section card" id="calculator">
+    <h2>🔢 Calculator</h2>
+    <ul class="help-list">
+      <li>Switch between <strong>Basic</strong> and <strong>Scientific</strong> mode using the tabs</li>
+      <li>Scientific mode adds: sin, cos, tan, log, ln, √, |x|, x², xⁿ, π, e, 1/x</li>
+      <li><strong>Memory:</strong> M+ stores current result, MR recalls it, MC clears</li>
+      <li>Full <strong>keyboard support</strong> — type numbers and operators directly</li>
+      <li>Press <kbd>Enter</kbd> or <kbd>=</kbd> to calculate, <kbd>Esc</kbd> to clear all</li>
+    </ul>
+  </div>
+
+  <div class="help-section card" id="todo">
+    <h2>✅ To-Do List</h2>
+    <ul class="help-list">
+      <li>Type a task and press <kbd>Enter</kbd> or click <strong>+ Add</strong></li>
+      <li>Choose a <strong>category</strong> (Study, Personal, Work, Health) and <strong>priority</strong></li>
+      <li>Optionally set a <strong>due date</strong> — overdue tasks are highlighted in red</li>
+      <li>Click the circle to <strong>mark done</strong>; click ✏️ to edit; 🗑️ to delete</li>
+    </ul>
+  </div>
+
+  <div class="help-section card" id="notes">
+    <h2>📝 Notes</h2>
+    <ul class="help-list">
+      <li>Click <strong>+ New</strong> to create a note</li>
+      <li>Use the <strong>formatting toolbar</strong> for Bold, Italic, Underline, and lists</li>
+      <li>Notes <strong>auto-save</strong> every 2 seconds while you type</li>
+      <li>Press <kbd>Ctrl+S</kbd> to save manually</li>
+      <li>Click <strong>⬇️ Download</strong> to save the note as a .txt file</li>
+    </ul>
+  </div>
+
+  <div class="help-section card" id="stopwatch">
+    <h2>⏱️ Stopwatch &amp; Timer</h2>
+    <ul class="help-list">
+      <li><strong>Stopwatch tab:</strong> Start, pause, resume. Click 🏁 Lap to record lap times</li>
+      <li>Best lap is shown in green, slowest in red</li>
+      <li><strong>Countdown tab:</strong> Set hours, minutes, seconds and start</li>
+    </ul>
+  </div>
+
+  <div class="help-section card" id="bmi">
+    <h2>⚖️ BMI Calculator</h2>
+    <ul class="help-list">
+      <li>Choose <strong>Metric</strong> (cm/kg) or <strong>Imperial</strong> (ft+in/lbs)</li>
+      <li>Enter height, weight, age, and gender for detailed results</li>
+      <li>The <strong>visual gauge</strong> shows your position in the BMI scale</li>
+    </ul>
+  </div>
+
+  <div class="help-section card" id="converter">
+    <h2>🔄 Unit Converter</h2>
+    <ul class="help-list">
+      <li>Select a <strong>category</strong> from the pills at the top</li>
+      <li>Choose "from" and "to" units, then type a value</li>
+      <li>Results update <strong>instantly</strong> as you type</li>
+      <li>Click <strong>⇄ Swap</strong> to reverse the conversion</li>
+    </ul>
+  </div>
+
+  <div class="help-section card" id="calendar">
+    <h2>📅 Calendar</h2>
+    <ul class="help-list">
+      <li>Click <strong>any day</strong> to select it and see its events</li>
+      <li>Use <strong>‹ ›</strong> arrows to navigate months</li>
+      <li>Fill in the event form and click <strong>Add Event</strong></li>
+      <li>Click an event to <strong>delete</strong> it</li>
+    </ul>
+  </div>
+
+  <div class="help-section card" id="game">
+    <h2>🎯 Guess the Number</h2>
+    <ul class="help-list">
+      <li>Choose a range: 1–50, 1–100, or 1–200</li>
+      <li>Type your guess and click <strong>Guess!</strong> or press <kbd>Enter</kbd></li>
+      <li>The game tells you if the number is <strong>Too High</strong> or <strong>Too Low</strong></li>
+      <li>Hints narrow down the range as you guess</li>
+      <li>Your wins and best score are saved automatically</li>
+    </ul>
+  </div>
+
+  <div class="help-section card" id="faq">
+    <h2>💬 Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Will my data be lost if I close the browser? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">No! All data is saved in your browser's localStorage, which persists even when you close and reopen the browser. However, clearing browser data/cache will erase it.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Does StudyHub work offline? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Yes! Once the page is loaded, all features work without an internet connection.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I use it on my phone? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Absolutely! StudyHub is fully responsive and works great on mobile phones and tablets.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">How do I change my name? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">On the Home page, click the "✏️ Edit Name" button in the welcome banner.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Can I export my notes? <span class="faq-arrow">▼</span></div>
+        <div class="faq-a">Yes! Open any note and click the "⬇️ Download" button to save it as a .txt file.</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer><p>Made with <span>♥</span> by StudyHub &copy; 2025</p></footer>
+<div class="toast-container" id="toastContainer"></div>
+<script>
+  (function() {
+    var sb = document.getElementById('sidebar');
+    var ov = document.getElementById('overlay');
+    var hb = document.getElementById('hamburger');
+    var sc = document.getElementById('sidebarClose');
+    function openSB()  { sb.classList.add('open'); ov.classList.add('open'); }
+    function closeSB() { sb.classList.remove('open'); ov.classList.remove('open'); }
+    hb.addEventListener('click', function() { sb.classList.contains('open') ? closeSB() : openSB(); });
+    sc.addEventListener('click', closeSB);
+    ov.addEventListener('click', closeSB);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSB(); });
+  })();
+  function toggleFaq(el) {
+    var ans = el.nextElementSibling;
+    var arrow = el.querySelector('.faq-arrow');
+    var isOpen = ans.style.display === 'block';
+    ans.style.display = isOpen ? 'none' : 'block';
+    arrow.style.transform = isOpen ? 'rotate(0)' : 'rotate(180deg)';
+  }
+</script>
+</body>
+</html>

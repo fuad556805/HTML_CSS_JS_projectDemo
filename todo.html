@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List – StudyHub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/todo.css">
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="images/logo.png" alt="StudyHub">
+    <span class="sidebar-title">StudyHub</span>
+    <button class="sidebar-close" id="sidebarClose">✕</button>
+  </div>
+  <nav class="sidebar-nav">
+    <a href="index.html" class="sidebar-link"><span class="link-icon">🏠</span> Home</a>
+    <a href="calculator.html" class="sidebar-link"><span class="link-icon">🔢</span> Calculator</a>
+    <a href="todo.html" class="sidebar-link active"><span class="link-icon">✅</span> To-Do</a>
+    <a href="notes.html" class="sidebar-link"><span class="link-icon">📝</span> Notes</a>
+    <a href="stopwatch.html" class="sidebar-link"><span class="link-icon">⏱️</span> Stopwatch</a>
+    <a href="clock.html" class="sidebar-link"><span class="link-icon">🕐</span> Clock</a>
+    <a href="bmi.html" class="sidebar-link"><span class="link-icon">⚖️</span> BMI Calculator</a>
+    <a href="converter.html" class="sidebar-link"><span class="link-icon">🔄</span> Converter</a>
+    <a href="calendar.html" class="sidebar-link"><span class="link-icon">📅</span> Calendar</a>
+    <a href="game.html" class="sidebar-link"><span class="link-icon">🎯</span> Guess Game</a>
+    <a href="about.html" class="sidebar-link"><span class="link-icon">ℹ️</span> About</a>
+    <a href="help.html" class="sidebar-link"><span class="link-icon">❓</span> Help</a>
+  </nav>
+  <div class="sidebar-footer">StudyHub &copy; 2025</div>
+</aside>
+
+<nav class="navbar">
+  <div class="nav-container">
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-brand">
+      <img src="images/logo.png" alt="StudyHub" class="nav-logo">
+      <span class="brand-text">StudyHub</span>
+    </a>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="page-header">
+    <h1>✅ To-Do List</h1>
+    <p>Stay on top of your tasks and deadlines</p>
+  </div>
+
+  <div class="card add-card">
+    <div class="add-row">
+      <input type="text" class="input" id="taskInput" placeholder="Add a new task…" maxlength="120">
+      <select class="input sel-cat" id="taskCat">
+        <option value="Study">📚 Study</option>
+        <option value="Personal">🏠 Personal</option>
+        <option value="Work">💼 Work</option>
+        <option value="Health">🏃 Health</option>
+        <option value="Other">🔖 Other</option>
+      </select>
+      <select class="input sel-pri" id="taskPri">
+        <option value="Low">🟢 Low</option>
+        <option value="Medium" selected>🟡 Medium</option>
+        <option value="High">🔴 High</option>
+      </select>
+      <input type="date" class="input" id="taskDue">
+      <button class="btn btn-primary" onclick="addTask()">+ Add</button>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <div class="filter-tabs">
+      <button class="ftab active" onclick="setFilter('all',this)">All <span id="cntAll" class="cnt">0</span></button>
+      <button class="ftab" onclick="setFilter('active',this)">Active <span id="cntActive" class="cnt">0</span></button>
+      <button class="ftab" onclick="setFilter('done',this)">Done <span id="cntDone" class="cnt">0</span></button>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+      <select class="input" id="filterCat" style="max-width:160px" onchange="render()">
+        <option value="">All Categories</option>
+        <option value="Study">📚 Study</option>
+        <option value="Personal">🏠 Personal</option>
+        <option value="Work">💼 Work</option>
+        <option value="Health">🏃 Health</option>
+        <option value="Other">🔖 Other</option>
+      </select>
+      <button class="btn btn-sm btn-danger" onclick="clearDone()">Clear Done</button>
+    </div>
+  </div>
+
+  <div class="task-list" id="taskList"></div>
+  <div class="empty-state" id="emptyState" style="display:none">
+    <div style="font-size:3rem">📭</div>
+    <p>No tasks here! Add one above.</p>
+  </div>
+</main>
+
+<footer><p>Made with <span>♥</span> by StudyHub &copy; 2025</p></footer>
+<div class="toast-container" id="toastContainer"></div>
+<script>
+  (function() {
+    var sb = document.getElementById('sidebar');
+    var ov = document.getElementById('overlay');
+    var hb = document.getElementById('hamburger');
+    var sc = document.getElementById('sidebarClose');
+    function openSB()  { sb.classList.add('open'); ov.classList.add('open'); }
+    function closeSB() { sb.classList.remove('open'); ov.classList.remove('open'); }
+    hb.addEventListener('click', function() { sb.classList.contains('open') ? closeSB() : openSB(); });
+    sc.addEventListener('click', closeSB);
+    ov.addEventListener('click', closeSB);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSB(); });
+  })();
+  function toast(msg, type) {
+    var t = document.createElement('div');
+    t.className = 'toast' + (type ? ' ' + type : '');
+    t.textContent = msg;
+    document.getElementById('toastContainer').appendChild(t);
+    setTimeout(function() { t.remove(); }, 3000);
+  }
+</script>
+<script src="js/todo.js"></script>
+</body>
+</html>
