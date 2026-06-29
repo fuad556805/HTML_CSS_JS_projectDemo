@@ -67,6 +67,8 @@ StudyHub/
 ---
 
 ## 🚀 Getting Started
+###Live Link
+https://fuad556805.github.io/HTML_CSS_JS_projectDemo/index.html
 
 ### Clone the repository
 
