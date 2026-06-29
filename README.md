@@ -71,13 +71,13 @@ StudyHub/
 ### Clone the repository
 
 ```bash
-git clone https://github.com/your-username/StudyHub.git
+git clone https://github.com/fuad556805/HTML_CSS_JS_projectDemo.git
 ```
 
 ### Open the project
 
 ```bash
-cd StudyHub
+cd HTML_CSS_JS_projectDemo
 ```
 
 ### Run the project
