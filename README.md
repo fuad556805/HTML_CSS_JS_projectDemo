@@ -133,7 +133,7 @@ This project was developed as a beginner university project to practice:
 ## 👨‍💻 Author
 
 **Al Fahim Fuad**
-**2023-1-60-066**
+**(2023-1-60-066)**
 
 CSE Student
 
